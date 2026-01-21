@@ -56,3 +56,21 @@ function checkScore() {
 
 
 }
+
+function winningComboChecker(figure){
+    const allSquares = document.querySelectorAll(".square")
+    const winningCombo = [
+        [0,1,2], [3,4,5], [6,7,8], // lignes
+        [0,3,6], [1,4,7], [2,5,8], // colonnes
+        [0,4,8], [2,4,6]           // diagonales
+    ];
+
+    winningCombo.forEach(array => {
+        const figureWins = array.every(cell =>
+            allSquares[cell].firstChild?.classList.contains(figure));
+        if (figureWins) {
+            infoDisplay.textContent = `${figure} a gagné`;
+            allSquares.forEach(square => square.replaceWith(square.cloneNode(true)));
+        }
+    })
+}
