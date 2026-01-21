@@ -25,3 +25,34 @@ function addGo(e) {
     go = go === "circle" ? "cross" : "circle";
     infoDisplay.textContent = "c'est le tour à " + go;
 }
+
+function checkScore() {
+    const allSquares = document.querySelectorAll(".square")
+    console.log(allSquares);
+    const winningCombo = [
+        [0,1,2], [3,4,5], [6,7,8], // lignes
+        [0,3,6], [1,4,7], [2,5,8], // colonnes
+        [0,4,8], [2,4,6]           // diagonales
+    ];
+
+
+    winningCombo.forEach(array => {
+        const circleWins = array.every(cell =>
+        allSquares[cell].firstChild?.classList.contains("circle"));
+        if (circleWins) {
+            infoDisplay.textContent = "Cercle a gagné";
+            allSquares.forEach(square => square.replaceWith(square.cloneNode(true)));
+        }
+    })
+
+    winningCombo.forEach(array => {
+        const crossWins = array.every(cell =>
+            allSquares[cell].firstChild?.classList.contains("cross"));
+        if (crossWins) {
+            infoDisplay.textContent = "Croix a gagné";
+            allSquares.forEach(square => square.replaceWith(square.cloneNode(true)));
+        }
+    })
+
+
+}
