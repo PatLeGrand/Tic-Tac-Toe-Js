@@ -24,6 +24,7 @@ function addGo(e) {
     e.target.append(goDisplay);
     go = go === "circle" ? "cross" : "circle";
     infoDisplay.textContent = "c'est le tour à " + go;
+    checkScore()
 }
 
 function checkScore() {
