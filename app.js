@@ -19,12 +19,17 @@ createGameBoard();
 
 function addGo(e) {
     console.log("clicked", e.target);
-    const goDisplay= document.createElement("div");
-    goDisplay.classList.add(go);
-    e.target.append(goDisplay);
-    go = go === "circle" ? "cross" : "circle";
-    infoDisplay.textContent = "c'est le tour à " + go;
-    checkScore()
+    if (!e.target.classList.contains("circle") && !e.target.classList.contains("cross")) {
+        const goDisplay= document.createElement("div");
+        goDisplay.classList.add(go);
+        e.target.append(goDisplay);
+        go = go === "circle" ? "cross" : "circle";
+        infoDisplay.textContent = "c'est le tour à " + go;
+        checkScore()
+    } else {
+        infoDisplay.textContent = ("Veillez choisir une case non occupée svp \nC'est le tour a " + go)
+    }
+
 }
 
 function checkScore() {
