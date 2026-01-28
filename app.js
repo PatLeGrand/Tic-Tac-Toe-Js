@@ -26,6 +26,7 @@ function addGo(e) {
         go = go === "circle" ? "cross" : "circle";
         infoDisplay.textContent = "c'est le tour à " + go;
         checkScore()
+        tieChecker()
     } else {
         infoDisplay.textContent = ("Veillez choisir une case non occupée svp \nC'est le tour a " + go)
     }
@@ -68,5 +69,4 @@ function winningComboChecker(figure){
             infoDisplay.textContent = ("C'est un match null");
             figure.forEach(square => square.replaceWith(square.cloneNode(true)));
         }
-        return false;
     }
