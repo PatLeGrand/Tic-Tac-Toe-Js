@@ -54,3 +54,19 @@ function winningComboChecker(figure){
         }
     })
 }
+
+    function tieChecker() {
+        let fillCells = 0;
+        const figure = document.querySelectorAll(".square");
+
+        figure.forEach(square => {
+            if (square.firstElementChild?.classList.contains("cross") || square.firstElementChild?.classList.contains("circle")) {
+                fillCells++;
+            }
+        })
+        if (fillCells == 9) {
+            infoDisplay.textContent = ("C'est un match null");
+            figure.forEach(square => square.replaceWith(square.cloneNode(true)));
+        }
+        return false;
+    }
